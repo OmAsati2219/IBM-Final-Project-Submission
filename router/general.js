@@ -9,7 +9,7 @@ public_users.post("/register", (req,res) => {
   const username = req.body.username;
   const password = req.body.password;
   new Promise((resolve,reject) =>{
-    if(username & password){
+    if(username && password){
         isValid(username)
         .then(result =>{
             users.push({"username":username,"password":password})
@@ -30,11 +30,10 @@ public_users.post("/register", (req,res) => {
 // Get the book list available in the shop
 public_users.get('/', function(req, res) {
     new Promise((resolve, reject) => {
-      const booksJson = JSON.stringify(books);
-      resolve({"AllBooks":booksJson});
+      resolve({"AllBooks":books});
     })
     .then(result => {
-      res.json(result);
+      res.status(200).send(JSON.stringify(result));
     })
     .catch(error => {
       res.status(500).send('Internal Server Error');
