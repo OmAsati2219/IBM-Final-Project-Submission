@@ -4,7 +4,6 @@ let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
 
-
 public_users.post("/register", (req,res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -30,7 +29,7 @@ public_users.post("/register", (req,res) => {
 
 // Get the book list available in the shop without Async/Await
 public_users.get('/', function(req, res) {
-    res.status(200).send(JSON.stringify(allbooks,null,4));
+    res.status(200).send(JSON.stringify(books,null,4));
 });
 
 
